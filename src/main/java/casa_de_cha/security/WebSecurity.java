@@ -51,9 +51,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/cha/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/cha/categoria/listar").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.GET, "/cha/categoria/{id}").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers(HttpMethod.POST, "/cha/categoria/salvar").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/cha/categoria/apagar").hasAnyAuthority("USER", "ADMIN")
-                .antMatchers(HttpMethod.PUT, "/cha/categoria/editar/{id}").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/cha/categoria/salvar").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/cha/categoria/apagar/{id}").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/cha/categoria/editar/{id}").hasAnyAuthority("ADMIN")
                 .anyRequest().denyAll();
 
             http.addFilterBefore(this.filtroAutenticacao(), UsernamePasswordAuthenticationFilter.class);

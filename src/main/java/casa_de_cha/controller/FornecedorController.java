@@ -36,13 +36,13 @@ public class FornecedorController {
         fornecedor_repository.save(fornecedor);
     }
 
-    @DeleteMapping("/apagar")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Fornecedor apagar(@PathVariable("id") int id, @RequestBody Fornecedor fornecedor) {
+    @PutMapping("/apagar/{id}")
+    public String apagar(@PathVariable("id") int id) {
         Fornecedor fornecedorEditado = fornecedor_repository.getReferenceById(id);
         fornecedorEditado.setAtivo(false);
+        fornecedor_repository.save(fornecedorEditado);
 
-        return fornecedor_repository.save(fornecedorEditado);
+        return "Fornecedor apagado com sucesso";
     }
 
     @PutMapping("/editar/{id}")

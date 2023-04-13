@@ -34,12 +34,6 @@ public class Itens_VendaController {
         itens_venda_repository.save(Itens_Venda);
     }
 
-    //substituir pela inativação
-    @DeleteMapping("/apagar")
-    public void apagar(Itens_Venda Itens_Venda) {
-        itens_venda_repository.delete(Itens_Venda);
-    }
-
     @PutMapping("/editar/{id}")
     public void editar(int id, Itens_Venda execucaoItens_Venda) {
         new Itens_Venda();

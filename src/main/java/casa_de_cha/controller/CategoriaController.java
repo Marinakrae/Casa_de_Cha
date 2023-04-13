@@ -34,19 +34,20 @@ public class CategoriaController {
         categoria_repository.save(categoria);
     }
 
-    @DeleteMapping("/apagar")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Categoria apagar(@PathVariable("id") int id, @RequestBody Categoria categoria) {
+    @PutMapping("/apagar/{id}")
+    public String apagar(@PathVariable("id") int id) {
         Categoria categoriaEditado = categoria_repository.getReferenceById(id);
         categoriaEditado.setAtivo(false);
+        categoria_repository.save(categoriaEditado);
 
-        return categoria_repository.save(categoriaEditado);
+        return "Categoria apagada com sucesso";
     }
 
     @PutMapping("/editar/{id}")
     public Categoria editar(@PathVariable("id") int id, @RequestBody Categoria categoria) {
         Categoria categoriaEditado = categoria_repository.getReferenceById(id);
         categoriaEditado.setNome_cat(categoria.getNome_cat());
+        categoriaEditado.setAtivo(categoria.isAtivo());
 
         return categoria_repository.save(categoriaEditado);
     }

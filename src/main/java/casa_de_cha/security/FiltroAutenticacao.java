@@ -59,7 +59,7 @@ public class FiltroAutenticacao extends OncePerRequestFilter {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token Expirado");
         } catch (AccessDeniedException e){
             System.out.println("Caiu no AcessDeniedException");
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Toke Expirado");
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token Expirado");
         }
 
     }

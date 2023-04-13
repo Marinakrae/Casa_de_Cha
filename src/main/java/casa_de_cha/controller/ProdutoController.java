@@ -35,13 +35,13 @@ public class ProdutoController {
         produto_repository.save(niveis);
     }
 
-    @DeleteMapping("/apagar")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Produto apagar(@PathVariable("id") int id, @RequestBody Produto produto) {
+    @PutMapping("/apagar/{id}")
+    public String apagar(@PathVariable("id") int id) {
         Produto produtoEditado = produto_repository.getReferenceById(id);
         produtoEditado.setAtivo(false);
+        produto_repository.save(produtoEditado);
 
-        return produto_repository.save(produtoEditado);
+        return "Produto apagado com sucesso";
     }
 
     @PutMapping("/editar/{id}")

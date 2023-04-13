@@ -95,4 +95,9 @@ public class Usuario implements Serializable {
         this.permissao = permissao;
         this.ativo = ativo;
     }
+
+    public Usuario(String login, String senha) {
+        this.login = login;
+        this.senha = senha;
+    }
 }

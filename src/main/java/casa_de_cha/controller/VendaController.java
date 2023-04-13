@@ -33,7 +33,6 @@ public class VendaController {
         venda_repository.save(niveis);
     }
 
-
     @PutMapping("/editar/{id}")
     public void editar(@PathVariable("id") int id, @RequestBody Venda venda) {
         new Venda();

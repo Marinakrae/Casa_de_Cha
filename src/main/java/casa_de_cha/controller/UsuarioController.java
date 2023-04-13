@@ -1,10 +1,8 @@
 package casa_de_cha.controller;
 
 import casa_de_cha.model.Usuario;
-import casa_de_cha.model.Usuario;
 import casa_de_cha.repository.Usuario_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,13 +45,13 @@ public class UsuarioController {
         usuario_repository.save(Usuario);
     }
 
-    @DeleteMapping("/apagar")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Usuario apagar(@PathVariable("id") int id, @RequestBody Usuario produto) {
+    @PutMapping("/apagar/{id}")
+    public String apagar(@PathVariable("id") int id) {
         Usuario produtoEditado = usuario_repository.getReferenceById(id);
         produtoEditado.setAtivo(false);
+        usuario_repository.save(produtoEditado);
 
-        return usuario_repository.save(produtoEditado);
+        return "Usuário apagado com sucesso";
     }
 
     @PutMapping("/editar/{id}")
