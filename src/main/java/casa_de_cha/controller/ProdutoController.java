@@ -1,8 +1,10 @@
 package casa_de_cha.controller;
 
+import casa_de_cha.model.Categoria;
 import casa_de_cha.model.Produto;
 import casa_de_cha.repository.Produto_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,10 +35,13 @@ public class ProdutoController {
         produto_repository.save(niveis);
     }
 
-    //substituir pela inativação
     @DeleteMapping("/apagar")
-    public void apagar(@RequestBody Produto produto) {
-        produto_repository.delete(produto);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Produto apagar(@PathVariable("id") int id, @RequestBody Produto produto) {
+        Produto produtoEditado = produto_repository.getReferenceById(id);
+        produtoEditado.setAtivo(false);
+
+        return produto_repository.save(produtoEditado);
     }
 
     @PutMapping("/editar/{id}")

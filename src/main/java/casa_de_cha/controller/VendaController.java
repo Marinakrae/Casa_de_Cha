@@ -33,11 +33,6 @@ public class VendaController {
         venda_repository.save(niveis);
     }
 
-    //substituir pela inativação
-    @DeleteMapping("/apagar")
-    public void apagar(@RequestBody Venda venda) {
-        venda_repository.delete(venda);
-    }
 
     @PutMapping("/editar/{id}")
     public void editar(@PathVariable("id") int id, @RequestBody Venda venda) {

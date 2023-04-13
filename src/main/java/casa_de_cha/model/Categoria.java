@@ -21,6 +21,17 @@ public class Categoria implements Serializable{
     @Column
     private String nome_cat;
 
+    @Column
+    private boolean ativo;
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
     public int getId_categoria() {
         return id_categoria;
     }

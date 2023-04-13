@@ -36,8 +36,11 @@ public class CategoriaController {
 
     @DeleteMapping("/apagar")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void apagar(@RequestBody Categoria categoria) {
-        categoria_repository.delete(categoria);
+    public Categoria apagar(@PathVariable("id") int id, @RequestBody Categoria categoria) {
+        Categoria categoriaEditado = categoria_repository.getReferenceById(id);
+        categoriaEditado.setAtivo(false);
+
+        return categoria_repository.save(categoriaEditado);
     }
 
     @PutMapping("/editar/{id}")

@@ -33,12 +33,6 @@ public class LoteController {
         lote_repository.save(lote);
     }
 
-    //substituir pela inativação
-    @DeleteMapping("/apagar")
-    public void apagar(@RequestBody Lote lote) {
-        lote_repository.delete(lote);
-    }
-
     @PutMapping("/editar/{id}")
     public void editar(@PathVariable("id") int id, @RequestBody Lote lote) {
         new Lote();

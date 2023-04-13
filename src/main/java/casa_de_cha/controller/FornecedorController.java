@@ -1,8 +1,10 @@
 package casa_de_cha.controller;
 
 import casa_de_cha.model.Fornecedor;
+import casa_de_cha.model.Fornecedor;
 import casa_de_cha.repository.Fornecedor_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,10 +36,13 @@ public class FornecedorController {
         fornecedor_repository.save(fornecedor);
     }
 
-    //substituir pela inativação
     @DeleteMapping("/apagar")
-    public void apagar(Fornecedor desempenhoNivel) {
-        fornecedor_repository.delete(desempenhoNivel);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Fornecedor apagar(@PathVariable("id") int id, @RequestBody Fornecedor fornecedor) {
+        Fornecedor fornecedorEditado = fornecedor_repository.getReferenceById(id);
+        fornecedorEditado.setAtivo(false);
+
+        return fornecedor_repository.save(fornecedorEditado);
     }
 
     @PutMapping("/editar/{id}")
