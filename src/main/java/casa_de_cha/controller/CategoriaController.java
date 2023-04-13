@@ -4,6 +4,7 @@ import casa_de_cha.model.Categoria;
 import casa_de_cha.repository.Categoria_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,13 +36,20 @@ public class CategoriaController {
     }
 
     @PutMapping("/apagar/{id}")
-    public String apagar(@PathVariable("id") int id) {
-        Categoria categoriaEditado = categoria_repository.getReferenceById(id);
-        categoriaEditado.setAtivo(false);
-        categoria_repository.save(categoriaEditado);
-
-        return "Categoria apagada com sucesso";
+    public ResponseEntity<Object> apagar(@PathVariable("id") int id) {
+        Categoria categoria = categoria_repository.getReferenceById(id);
+        if (categoria == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Categoria não encontrada.");
+        }
+        categoria.setAtivo(false);
+        categoria_repository.save(categoria);
+        if (categoria.isAtivo()) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possível apagar a categoria.");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body("Categoria apagada com sucesso.");
     }
+
+
 
     @PutMapping("/editar/{id}")
     public Categoria editar(@PathVariable("id") int id, @RequestBody Categoria categoria) {

@@ -27,11 +27,6 @@ public class LoginController {
     @CrossOrigin
     @PostMapping("/cha/login")
     public ResponseEntity<Object> autenticacao(@RequestBody Usuario usuario){
-        System.out.println(usuario.getNome_usuario());
-        System.out.println(usuario.getId_Usuario());
-        System.out.println(usuario.getPermissao());
-        System.out.println(usuario.getToken());
-        System.out.println(usuario.getAtivo());
         System.out.println("User: "+usuario.getLogin());
         System.out.println("Senha: "+usuario.getSenha());
 

@@ -2,9 +2,11 @@ package casa_de_cha.controller;
 
 import casa_de_cha.model.Fornecedor;
 import casa_de_cha.model.Fornecedor;
+import casa_de_cha.model.Fornecedor;
 import casa_de_cha.repository.Fornecedor_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,12 +39,17 @@ public class FornecedorController {
     }
 
     @PutMapping("/apagar/{id}")
-    public String apagar(@PathVariable("id") int id) {
-        Fornecedor fornecedorEditado = fornecedor_repository.getReferenceById(id);
-        fornecedorEditado.setAtivo(false);
-        fornecedor_repository.save(fornecedorEditado);
-
-        return "Fornecedor apagado com sucesso";
+    public ResponseEntity<Object> apagar(@PathVariable("id") int id) {
+        Fornecedor fornecedor = fornecedor_repository.getReferenceById(id);
+        if (fornecedor == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Fornecedor não encontrado.");
+        }
+        fornecedor.setAtivo(false);
+        fornecedor_repository.save(fornecedor);
+        if (fornecedor.getAtivo()) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possível apagar o fornecedor.");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body("Fornecedor apagado com sucesso.");
     }
 
     @PutMapping("/editar/{id}")

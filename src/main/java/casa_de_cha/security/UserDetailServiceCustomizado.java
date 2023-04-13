@@ -21,10 +21,9 @@ public class UserDetailServiceCustomizado implements UserDetailsService {
         if(usuario==null){
             throw new UsernameNotFoundException("Usuário ou senha incorretos");
         } else{
-            UserDetails user = User.withUsername(usuario.getLogin())
+            return User.withUsername(usuario.getLogin())
                     .password(usuario.getSenha())
                     .authorities(usuario.getPermissao()).build();
-            return user;
         }
     }
 }

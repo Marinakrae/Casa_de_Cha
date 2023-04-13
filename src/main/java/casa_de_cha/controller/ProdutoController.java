@@ -2,9 +2,11 @@ package casa_de_cha.controller;
 
 import casa_de_cha.model.Categoria;
 import casa_de_cha.model.Produto;
+import casa_de_cha.model.Produto;
 import casa_de_cha.repository.Produto_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,12 +38,17 @@ public class ProdutoController {
     }
 
     @PutMapping("/apagar/{id}")
-    public String apagar(@PathVariable("id") int id) {
-        Produto produtoEditado = produto_repository.getReferenceById(id);
-        produtoEditado.setAtivo(false);
-        produto_repository.save(produtoEditado);
-
-        return "Produto apagado com sucesso";
+    public ResponseEntity<Object> apagar(@PathVariable("id") int id) {
+        Produto produto = produto_repository.getReferenceById(id);
+        if (produto == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Produto não encontrado.");
+        }
+        produto.setAtivo(false);
+        produto_repository.save(produto);
+        if (produto.getAtivo()) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possível apagar o produto.");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body("Produto apagado com sucesso.");
     }
 
     @PutMapping("/editar/{id}")

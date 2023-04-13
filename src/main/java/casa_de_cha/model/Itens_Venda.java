@@ -20,7 +20,7 @@ public class Itens_Venda implements Serializable {
     private int id_itens_venda;
 
     @ManyToOne(cascade=CascadeType.PERSIST)
-    @JoinColumn(name = "venda_id_venda")
+    @JoinColumn(name = "id_venda")
     private Venda venda;
 
     @ManyToOne(cascade=CascadeType.PERSIST)

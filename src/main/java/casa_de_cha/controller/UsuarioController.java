@@ -1,8 +1,11 @@
 package casa_de_cha.controller;
 
 import casa_de_cha.model.Usuario;
+import casa_de_cha.model.Usuario;
 import casa_de_cha.repository.Usuario_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,12 +49,17 @@ public class UsuarioController {
     }
 
     @PutMapping("/apagar/{id}")
-    public String apagar(@PathVariable("id") int id) {
-        Usuario produtoEditado = usuario_repository.getReferenceById(id);
-        produtoEditado.setAtivo(false);
-        usuario_repository.save(produtoEditado);
-
-        return "Usuário apagado com sucesso";
+    public ResponseEntity<Object> apagar(@PathVariable("id") int id) {
+        Usuario usuario = usuario_repository.getReferenceById(id);
+        if (usuario == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario não encontrado.");
+        }
+        usuario.setAtivo(false);
+        usuario_repository.save(usuario);
+        if (usuario.getAtivo()) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possível apagar o usuario.");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body("Usuario apagado com sucesso.");
     }
 
     @PutMapping("/editar/{id}")

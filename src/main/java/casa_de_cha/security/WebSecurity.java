@@ -24,16 +24,16 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
     @Autowired
     public void configureAutenticacao(AuthenticationManagerBuilder builder) throws Exception{
         System.out.println("**** configureAutenticacao ****");
         builder.userDetailsService(this.userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-    }
-
-    @Bean
-    @Override
-    protected AuthenticationManager authenticationManager() throws Exception{
-        return super.authenticationManager();
     }
 
     @Bean
