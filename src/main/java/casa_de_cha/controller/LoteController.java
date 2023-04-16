@@ -40,7 +40,6 @@ public class LoteController {
         loteEditado = lote_repository.getReferenceById(id);
         loteEditado.setQtd_lote(lote.getQtd_lote());
         loteEditado.setDt_registro(lote.getDt_registro());
-        loteEditado.setFornecedor(lote.getFornecedor());
         loteEditado.setDt_validade(lote.getDt_validade());
         loteEditado.setProduto(lote.getProduto());
 

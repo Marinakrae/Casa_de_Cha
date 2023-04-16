@@ -29,9 +29,6 @@ public class Lote implements Serializable {
     @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "produto_id_produto")
     private Produto produto;
-    @ManyToOne(cascade=CascadeType.PERSIST)
-    @JoinColumn(name = "fornecedor_id_fornecedor")
-    private Fornecedor fornecedor;
 
     public int getId_Lote() {
         return id_Lote;
@@ -73,11 +70,4 @@ public class Lote implements Serializable {
         this.produto = produto;
     }
 
-    public Fornecedor getFornecedor() {
-        return fornecedor;
-    }
-
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
-    }
 }

@@ -2,7 +2,6 @@ package casa_de_cha.controller;
 
 import casa_de_cha.model.Fornecedor;
 import casa_de_cha.model.Fornecedor;
-import casa_de_cha.model.Fornecedor;
 import casa_de_cha.repository.Fornecedor_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

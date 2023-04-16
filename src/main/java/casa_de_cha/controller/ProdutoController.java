@@ -1,7 +1,5 @@
 package casa_de_cha.controller;
 
-import casa_de_cha.model.Categoria;
-import casa_de_cha.model.Produto;
 import casa_de_cha.model.Produto;
 import casa_de_cha.repository.Produto_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +60,7 @@ public class ProdutoController {
         produtoEditado.setCusto(produto.getCusto());
         produtoEditado.setCategoria(produto.getCategoria());
         produtoEditado.setAtivo(produto.getAtivo());
+        produtoEditado.setFornecedor(produto.getFornecedor());
 
         produto_repository.save(produtoEditado);
     }

@@ -3,7 +3,6 @@ package casa_de_cha.controller;
 import casa_de_cha.model.Itens_Venda;
 import casa_de_cha.repository.Itens_Venda_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

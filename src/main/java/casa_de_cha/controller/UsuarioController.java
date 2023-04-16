@@ -1,7 +1,6 @@
 package casa_de_cha.controller;
 
 import casa_de_cha.model.Usuario;
-import casa_de_cha.model.Usuario;
 import casa_de_cha.repository.Usuario_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController()
-@RequestMapping("freezeria/usuario")
+@RequestMapping("cha/usuario")
 public class UsuarioController {
 
     @Autowired

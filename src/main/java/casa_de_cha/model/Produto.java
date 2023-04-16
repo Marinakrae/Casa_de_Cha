@@ -25,12 +25,18 @@ public class Produto implements Serializable{
     @Column
     private Float custo;
     @Column
+    private Float valor_venda;
+    @Column
     private int qtd_produto;
     @Column
     private Boolean ativo;
     @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "categoria_id_categoria")
     private Categoria categoria;
+
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn(name = "fornecedor_id_fornecedor")
+    private Fornecedor fornecedor;
 
     public int getId_produto() {
         return id_produto;
@@ -78,6 +84,22 @@ public class Produto implements Serializable{
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public Float getValor_venda() {
+        return valor_venda;
+    }
+
+    public void setValor_venda(Float valor_venda) {
+        this.valor_venda = valor_venda;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
     public Categoria getCategoria() {
