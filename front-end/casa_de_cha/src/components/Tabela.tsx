@@ -24,14 +24,18 @@ export default function Tabela(props: TabelaProps) {
     function renderizarDados() {
         return props.categorias?.map((categoria, i) => {
             return (
-                <tr key={categoria.id}
-                    className={`${i % 2 === 0 ? 'bg-pink-200' : 'bg-pink-100'}`}>
+                <tr
+                    key={categoria.id}
+                    className={`${i % 2 === 0 ? 'bg-pink-200' : 'bg-pink-100'} ${!categoria.ativo ? 'bg-gray-200' : ''}`}
+                >
                     <td className="text-left p-4">{categoria.nome}</td>
-                    <td className="text-left p-4">{categoria.ativo}</td>
+                    <td className="text-left p-4">
+                        <input type="checkbox" className="mx-auto" checked={categoria.ativo} disabled />
+                    </td>
                     {exibirAcoes ? renderizarAcoes(categoria) : false}
-                </tr >
-            )
-        })
+                </tr>
+            );
+        });
     }
 
     function renderizarAcoes(categoria: Categoria) {

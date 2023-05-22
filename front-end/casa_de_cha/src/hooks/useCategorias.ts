@@ -19,10 +19,12 @@ export default function useCategorias() {
       authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
       projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID
     })
-      , obterTodos, []
-  })
+    obterTodos()
+  }, [])
+  
 
   function obterTodos() {
+    console.log('obter todos')
     repo.obterTodos().then(categorias => {
       setCategorias(categorias)
       exibirTabela()

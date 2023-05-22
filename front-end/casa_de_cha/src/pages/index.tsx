@@ -33,7 +33,7 @@ export default function Home() {
         {tabelaVisivel ? (
           <>
             <div className="flex justify-end">
-              <Botao cor="green" className="mb-4" onClick={novoCategoria}>
+              <Botao cor='green' className="mb-4" onClick={novoCategoria}>
                 Nova Categoria
               </Botao>
             </div>
@@ -45,7 +45,7 @@ export default function Home() {
           <Formulario
             categoria={categoria}
             categoriaMudou={salvarCategoria}
-            cancelado={() => exibirTabela} />
+            cancelado={() => exibirTabela()} />
         )}
       </Layout >
     </div >
