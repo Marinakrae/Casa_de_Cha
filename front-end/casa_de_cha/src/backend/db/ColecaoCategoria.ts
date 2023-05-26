@@ -19,6 +19,7 @@ export default class ColecaoCategoria implements CategoriaRepositorio {
 
     async salvar(categoria: Categoria): Promise<Categoria> {
         if (categoria?.id) {
+          //Edição
           await this.colecao().doc(categoria.id).set(categoria);
           return categoria;
         } else {
@@ -28,7 +29,7 @@ export default class ColecaoCategoria implements CategoriaRepositorio {
           if (categoriaExistente) {
             return categoriaExistente;
           } else {
-            throw new Error('Categoria não encontrado');
+            throw new Error('Categoria não encontrada');
           }
         }
       }
