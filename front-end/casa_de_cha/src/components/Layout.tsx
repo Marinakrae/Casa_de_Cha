@@ -11,7 +11,7 @@ export default function Layout(props: LayoutProps) {
             flex flex-col
             bg-white text-amber-950 rounded-md
             font-serif
-            w-full sm:w-2/3 
+            w-full sm:w-2/3 mt-24
         `}>
             <Titulo>{props.titulo}</Titulo>
             <div className="p-6">

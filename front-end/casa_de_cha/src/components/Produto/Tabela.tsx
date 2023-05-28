@@ -32,7 +32,7 @@ export default function Tabela(props: TabelaProps) {
             return (
                 <tr
                     key={produto.id}
-                    className={`${i % 2 === 0 ? 'bg-pink-200' : 'bg-pink-100'} ${!produto.ativo ? 'bg-gray-300' : ''}`}
+                    className={`${i % 2 === 0 ? 'bg-pink-200' : 'bg-pink-100'} ${!produto.ativo ? 'bg-gray-200' : ''}`}
                 >
                     <td className="text-left p-4">{produto.nome}</td>
                     <td className="text-left p-4">{produto.descricao}</td>

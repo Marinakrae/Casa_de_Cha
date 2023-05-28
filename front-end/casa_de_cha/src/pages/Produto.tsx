@@ -25,7 +25,7 @@ export default function Home() {
     return (
         <div className={`
       flex justify-center items-center h-screen
-      bg-pink-200
+      bg-pink-200 pb-1
       text-white    
     `}>
             <Navbar />

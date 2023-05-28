@@ -21,7 +21,7 @@ export default function Formulario(props: FormularioProps) {
                 valorMudou={setNome}
                 className="mb-5"
             />
-            <div className="flex items-center mb-5">
+            <div className="flex items-center">
                 <input
                     type="checkbox"
                     checked={ativo}
