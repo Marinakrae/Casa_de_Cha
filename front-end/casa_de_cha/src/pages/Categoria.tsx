@@ -1,8 +1,8 @@
 import { Inter } from 'next/font/google'
 import Layout from '../components/Layout'
-import Tabela from '../components/Tabela'
+import Tabela from '../components/Categoria/Tabela'
 import Botao from '../components/Botao'
-import Formulario from '../components/Formulario'
+import Formulario from '../components/Categoria/Formulario'
 import 'firebase/compat/firestore';
 import useCategorias from '../hooks/useCategorias'
 import Navbar from '../components/Navbar'

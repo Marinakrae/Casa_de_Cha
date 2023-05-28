@@ -65,21 +65,21 @@ const Navbar = () => {
                 <div
                     className={
                         nav
-                            ? 'sm:hidden absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center w-full h-screen bg-black text-center ease-in duration-300'
-                            : 'sm:hidden absolute top-0 left-[-100%] right-0 bottom-0 flex justify-center items-center w-full h-screen bg-black text-center ease-in duration-300'
+                            ? 'sm:hidden absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center w-full h-screen bg-pink-200 text-center ease-in duration-300'
+                            : 'sm:hidden absolute top-0 left-[-100%] right-0 bottom-0 flex justify-center items-center w-full h-screen bg-pink-200 text-center ease-in duration-300'
                     }
                 >
                     <ul>
-                        <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
+                        <li onClick={handleNav} className='p-4 text-4xl text-amber-900 hover:text-pink-500'>
                             <Link href='/#'>Registrar Venda</Link>
                         </li>
-                        <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
+                        <li onClick={handleNav} className='p-4 text-4xl text-amber-900 hover:text-pink-500'>
                             <Link href='/#'>Registrar Lote</Link>
                         </li>
-                        <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
+                        <li onClick={handleNav} className='p-4 text-4xl text-amber-900 hover:text-pink-500'>
                             <Link href='/#'>Cadastros</Link>
                         </li>
-                        <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
+                        <li onClick={handleNav} className='p-4 text-4xl text-amber-900 hover:text-pink-500'>
                             <Link href='/#'>Sair</Link>
                         </li>
                     </ul>

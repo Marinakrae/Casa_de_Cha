@@ -1,6 +1,6 @@
-import Categoria from "../core/Categoria"
-import Botao from "./Botao"
-import Entrada from "./Entrada"
+import Categoria from "../../core/Categoria"
+import Botao from "../Botao"
+import Entrada from "../Entrada"
 import { useState } from "react"
 
 interface FormularioProps {

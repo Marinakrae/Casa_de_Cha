@@ -1,15 +1,16 @@
 interface EntradaProps {
-    tipo?: 'text' | 'number'
+    tipo?: 'text' | 'number';
     texto: string;
-    valor: any
-    somenteLeitura?: boolean
-    className?: string
-    valorMudou?: (valor: any) => void
+    valor: any;
+    somenteLeitura?: boolean;
+    className?: string;
+    valorMudou?: (valor: any) => void;
+    metadeLargura?: boolean;
 }
 
 export default function Entrada(props: EntradaProps) {
     return (
-        <div className={`flex flex-col ${props.className}`}>
+        <div className={`flex flex-col ${props.className} ${props.metadeLargura ? 'w-1/2' : ''}`}>
             <label className="mb-2">
                 {props.texto}
             </label>
@@ -25,5 +26,5 @@ export default function Entrada(props: EntradaProps) {
                 `}
             />
         </div>
-    )
+    );
 }

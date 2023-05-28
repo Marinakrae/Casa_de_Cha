@@ -1,5 +1,5 @@
-import Categoria from "../core/Categoria"
-import { IconeEdicao, IconeLixo } from "./Icones"
+import Categoria from "../../core/Categoria"
+import { IconeEdicao, IconeLixo } from "../Icones"
 
 interface TabelaProps {
     categorias: Categoria[]
@@ -23,6 +23,7 @@ export default function Tabela(props: TabelaProps) {
 
     function renderizarDados() {
         return props.categorias?.map((categoria, i) => {
+            console.log(categoria)
             return (
                 <tr
                     key={categoria.id}
