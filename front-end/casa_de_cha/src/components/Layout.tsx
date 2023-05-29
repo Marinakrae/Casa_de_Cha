@@ -9,7 +9,7 @@ export default function Layout(props: LayoutProps) {
     return (
         <div className={`
             flex flex-col
-            bg-white text-amber-950 rounded-md
+            bg-pink-50 text-amber-950 rounded-md
             font-serif
             w-full sm:w-2/3 mt-24
         `}>
