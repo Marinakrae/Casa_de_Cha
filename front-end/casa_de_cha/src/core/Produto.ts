@@ -6,11 +6,11 @@ export default class Produto {
     private _qtd_produto: number
     private _valor_venda: number
     private _ativo: boolean
-    private _id_categoria: number
-    private _id_fornecedor: number
+    private _id_categoria: string
+    private _id_fornecedor: string
 
     constructor(id: string, nome: string, descricao: string, custo: number, qtd_produto: number,
-                valor_venda: number, ativo: boolean, id_categoria: number, id_fornecedor: number){
+                valor_venda: number, ativo: boolean, id_categoria: string, id_fornecedor: string){
         this._nome = nome
         this._ativo = ativo
         this._id = id
@@ -23,7 +23,7 @@ export default class Produto {
     }
 
     static vazio() {
-        return new Produto('', '', '', 0, 0, 0, true, 0, 0)
+        return new Produto('', '', '', 0, 0, 0, true, '', '')
     }
 
     get id() {

@@ -1,3 +1,4 @@
+import Fornecedor from "../../core/Fornecedor"
 import Produto from "../../core/Produto"
 import { IconeEdicao, IconeLixo } from "../Icones"
 
@@ -5,6 +6,7 @@ interface TabelaProps {
     produtos: Produto[]
     produtoSelecionado?: (produto: Produto) => void
     produtoExcluido?: (produto: Produto) => void
+    fornecedores?: Fornecedor[]
 }
 
 export default function Tabela(props: TabelaProps) {
@@ -26,17 +28,27 @@ export default function Tabela(props: TabelaProps) {
         )
     }
 
+    function obterNomeFornecedor(idFornecedor: string) {
+        const fornecedores = props.fornecedores || [];
+
+        const fornecedorEncontrado = fornecedores.find(
+            (fornecedor) => fornecedor.id === idFornecedor
+        );
+        return fornecedorEncontrado?.razao_social || "";
+    }
+
     function renderizarDados() {
+
         return props.produtos?.map((produto, i) => {
-            console.log(produto)
+            const nomeFornecedor = obterNomeFornecedor(produto.id_fornecedor);
             return (
                 <tr
                     key={produto.id}
-                    className={`${i % 2 === 0 ? 'bg-pink-200' : 'bg-pink-100'} ${!produto.ativo ? 'bg-gray-200' : ''}`}
+                    className={`${i % 2 === 0 ? 'bg-pink-200' : 'bg-pink-100'} ${!produto.ativo ? 'bg-gray-300' : ''}`}
                 >
                     <td className="text-left p-4">{produto.nome}</td>
                     <td className="text-left p-4">{produto.descricao}</td>
-                    <td className="text-left p-4">{produto.id_fornecedor}</td>
+                    <td className="text-left p-4">{nomeFornecedor}</td>
                     <td className="text-left p-4">{produto.custo}</td>
                     <td className="text-left p-4">{produto.valor_venda}</td>
                     <td className="text-left p-4">{produto.qtd_produto}</td>

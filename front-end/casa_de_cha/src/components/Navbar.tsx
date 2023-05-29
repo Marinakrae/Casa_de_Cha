@@ -34,7 +34,7 @@ const Navbar = () => {
             >
                 <div className='max-w-[100] m-auto h-16 flex justify-between items-center p-4 text-white mx-0'>
                     <Link href='/'>
-                        <Image src={logo} alt="Picture of the author" width={80} height={80} />
+                        <Image src={logo} alt="Casa de Chá" width={80} height={80} />
                     </Link>
                     <ul
                         style={{ color: `${textColor}` }}
@@ -49,9 +49,12 @@ const Navbar = () => {
                         <li className='p-4 relative'>
                             <span className="cursor-pointer">Cadastros</span>
                             <ul className="absolute left-0 mt-2 py-2 bg-amber-900 text-white rounded-md space-y-2 hover:block">
-                                <li><Link href='/Categoria'>Categoria</Link></li>
-                                <li><Link href='/Fornecedor'>Fornecedor</Link></li>
-                                <li><Link href='/Produto'>Produto</Link></li>
+                                <li><Link href='/Categoria'>Categorias</Link></li>
+                                <li><Link href='/Fornecedor'>Fornecedores</Link></li>
+                                <li><Link href='/Produto'>Produtos</Link></li>
+                                <li><Link href='/Usuario'>Usuários</Link></li>
+                                <li><Link href='/Lote'>Lotes</Link></li>
+                                <li><Link href='/Venda'>Vendas</Link></li>
                             </ul>
                         </li>
                         <li className='p-4 ml-auto'>

@@ -10,6 +10,7 @@ interface EntradaProps {
     metadeLargura?: boolean;
     mascaraMonetaria?: boolean;
     categorias?: Array<{ id: string | number; nome: string; ativo: boolean }>; // lista de categorias
+    fornecedores?: Array<{ id: string | number; razao_social: string; cnpj: number, telefone: number, ativo: boolean }>; // lista de fornecedores
 }
 
 export default function Entrada(props: EntradaProps) {
@@ -34,7 +35,21 @@ export default function Entrada(props: EntradaProps) {
                     ))}
                 </select>
             )}
-            {!props.categorias && (
+            {props.fornecedores && (
+                <select
+                    value={String(valorFormatado)}
+                    onChange={e => props.valorMudou?.(e.target.value)}
+                    className="border-2 border-pink-200 rounded-lg focus:outline-none bg-gray-50 px-4 py-2"
+                >
+                    <option value="">Selecione um fornecedor</option>
+                    {props.fornecedores.map(fornecedor => (
+                        <option key={fornecedor.id} value={String(fornecedor.id)}>
+                            {fornecedor.razao_social}
+                        </option>
+                    ))}
+                </select>
+            )}
+            {!props.categorias && !props.fornecedores && (
                 <input
                     type={props.tipo ?? 'text'}
                     value={String(valorFormatado)}

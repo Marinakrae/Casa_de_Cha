@@ -3,12 +3,15 @@ import Categoria from "../../core/Categoria"
 import Botao from "../Botao"
 import Entrada from "../Entrada"
 import { useState } from "react"
+import { IMaskInput } from "react-imask";
+import Fornecedor from "../../core/Fornecedor"
 
 interface FormularioProps {
     produto: Produto
     produtoMudou?: (cliente: Produto) => void
     cancelado?: () => void
     categorias?: Categoria[]
+    fornecedores?: Fornecedor[]
 }
 
 export default function Formulario(props: FormularioProps) {
@@ -22,6 +25,7 @@ export default function Formulario(props: FormularioProps) {
     const [id_categoria, setIdCategoria] = useState(props.produto?.id_categoria ?? 0)
     const [id_fornecedor, setIdFornecedor] = useState(props.produto?.id_fornecedor ?? 0)
     const categorias = props.categorias
+    const fornecedores = props.fornecedores
 
     return (
         <div>
@@ -44,6 +48,7 @@ export default function Formulario(props: FormularioProps) {
                     valorMudou={setIdFornecedor}
                     className="mb-5 pr-5"
                     metadeLargura
+                    fornecedores={fornecedores}
                 />
                 <Entrada
                     texto="Categoria"
@@ -54,6 +59,13 @@ export default function Formulario(props: FormularioProps) {
                     categorias={categorias}
                 />
             </div>
+            {/* <IMaskInput
+                mask={Number}
+                radix="."
+                thousandsSeparator=","
+                placeholder="Digite o custo de aquisição do produto"
+                value={custo}
+            /> */}
             <div className="flex flex-wrap">
                 <Entrada
                     tipo="number"

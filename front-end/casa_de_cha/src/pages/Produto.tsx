@@ -7,6 +7,7 @@ import 'firebase/compat/firestore';
 import useProdutos from '../hooks/useProdutos'
 import Navbar from '../components/Navbar'
 import useCategorias from '../hooks/useCategorias'
+import useFornecedores from '../hooks/useFornecedores'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,7 +28,9 @@ export default function Home() {
         categorias
     } = useCategorias()
 
-    console.log(categorias)
+    const {
+        fornecedores
+    } = useFornecedores()
 
     return (
         <div className={`
@@ -46,14 +49,16 @@ export default function Home() {
                         </div>
                         <Tabela produtos={produtos}
                             produtoSelecionado={selecionarProduto}
-                            produtoExcluido={excluirProduto} />
+                            produtoExcluido={excluirProduto}
+                            fornecedores={fornecedores} />
                     </>
                 ) : (
                     <Formulario
                         produto={produto}
                         produtoMudou={salvarProduto}
                         cancelado={() => exibirTabela()}
-                        categorias={categorias} />
+                        categorias={categorias}
+                        fornecedores={fornecedores} />
                 )}
             </Layout >
         </div >
