@@ -1,4 +1,5 @@
 import Produto from "../../core/Produto"
+import Categoria from "../../core/Categoria"
 import Botao from "../Botao"
 import Entrada from "../Entrada"
 import { useState } from "react"
@@ -7,6 +8,7 @@ interface FormularioProps {
     produto: Produto
     produtoMudou?: (cliente: Produto) => void
     cancelado?: () => void
+    categorias?: Categoria[]
 }
 
 export default function Formulario(props: FormularioProps) {
@@ -19,6 +21,8 @@ export default function Formulario(props: FormularioProps) {
     const [ativo, setAtivo] = useState(props.produto?.ativo ?? 0)
     const [id_categoria, setIdCategoria] = useState(props.produto?.id_categoria ?? 0)
     const [id_fornecedor, setIdFornecedor] = useState(props.produto?.id_fornecedor ?? 0)
+    const categorias = props.categorias
+
     return (
         <div>
             <Entrada
@@ -47,10 +51,12 @@ export default function Formulario(props: FormularioProps) {
                     valorMudou={setIdCategoria}
                     className="mb-5"
                     metadeLargura
+                    categorias={categorias}
                 />
             </div>
             <div className="flex flex-wrap">
                 <Entrada
+                    tipo="number"
                     texto="Custo"
                     valor={custo}
                     valorMudou={setCusto}
@@ -58,6 +64,7 @@ export default function Formulario(props: FormularioProps) {
                     metadeLargura
                 />
                 <Entrada
+                    tipo="number"
                     texto="Valor Venda"
                     valor={valor_venda}
                     valorMudou={setValorVenda}
@@ -67,6 +74,7 @@ export default function Formulario(props: FormularioProps) {
             </div>
             <div className="flex flex-wrap">
                 <Entrada
+                    tipo="number"
                     texto="Quantidade Disponível"
                     valor={qtd_produto}
                     valorMudou={setQtdProduto}
