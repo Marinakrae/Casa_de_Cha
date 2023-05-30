@@ -1,10 +1,10 @@
-import Produto from "../../core/Produto"
-import Categoria from "../../core/Categoria"
+import Produto from "../../core/model/Produto"
+import Categoria from "../../core/model/Categoria"
 import Botao from "../Botao"
 import Entrada from "../Entrada"
 import { useState } from "react"
 import { IMaskInput } from "react-imask";
-import Fornecedor from "../../core/Fornecedor"
+import Fornecedor from "../../core/model/Fornecedor"
 
 interface FormularioProps {
     produto: Produto

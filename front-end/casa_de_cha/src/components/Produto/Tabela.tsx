@@ -1,5 +1,5 @@
-import Fornecedor from "../../core/Fornecedor"
-import Produto from "../../core/Produto"
+import Fornecedor from "../../core/model/Fornecedor"
+import Produto from "../../core/model/Produto"
 import { IconeEdicao, IconeLixo } from "../Icones"
 
 interface TabelaProps {

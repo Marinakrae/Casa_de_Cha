@@ -1,5 +1,5 @@
 import firebase from "../config";
-import Fornecedor from "../../core/Fornecedor";
+import Fornecedor from "../../core/model/Fornecedor";
 import FornecedorRepositorio from "../../core/FornecedorRepositorio";
 
 export default class ColecaoFornecedor implements FornecedorRepositorio {

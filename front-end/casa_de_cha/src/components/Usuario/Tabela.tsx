@@ -1,22 +1,22 @@
-import Fornecedor from "../../core/model/Fornecedor"
+import Usuario from "../../core/model/Usuario"
 import { IconeEdicao, IconeLixo } from "../Icones"
 
 interface TabelaProps {
-    fornecedores: Fornecedor[]
-    fornecedorSelecionado?: (fornecedor: Fornecedor) => void
-    fornecedorExcluido?: (fornecedor: Fornecedor) => void
+    usuarios: Usuario[]
+    usuarioSelecionado?: (usuario: Usuario) => void
+    usuarioExcluido?: (usuario: Usuario) => void
 }
 
 export default function Tabela(props: TabelaProps) {
 
-    const exibirAcoes = props.fornecedorExcluido || props.fornecedorSelecionado
+    const exibirAcoes = props.usuarioExcluido || props.usuarioSelecionado
 
     function renderizarCabecalho() {
         return (
             <tr>
-                <th className="text-left p-4">Razão Social</th>
-                <th className="text-left p-4">Cnpj</th>
-                <th className="text-left p-4">Telefone</th>
+                <th className="text-left p-4">Nome</th>
+                <th className="text-left p-4">Email</th>
+                <th className="text-left p-4">Permissão</th>
                 <th className="text-left p-4">Ativo</th>
                 {exibirAcoes ? <th className="p-4">Ações</th> : false}
             </tr>
@@ -24,30 +24,30 @@ export default function Tabela(props: TabelaProps) {
     }
 
     function renderizarDados() {
-        return props.fornecedores?.map((fornecedor, i) => {
-            console.log(fornecedor)
+        return props.usuarios?.map((usuario, i) => {
+            console.log(usuario)
             return (
                 <tr
-                    key={fornecedor.id}
-                    className={`${i % 2 === 0 ? 'bg-pink-200' : 'bg-pink-100'} ${!fornecedor.ativo ? 'bg-gray-300' : ''}`}
+                    key={usuario.id}
+                    className={`${i % 2 === 0 ? 'bg-pink-200' : 'bg-pink-100'} ${!usuario.ativo ? 'bg-gray-300' : ''}`}
                 >
-                    <td className="text-left p-4">{fornecedor.razao_social}</td>
-                    <td className="text-left p-4">{fornecedor.cnpj}</td>
-                    <td className="text-left p-4">{fornecedor.telefone}</td>
+                    <td className="text-left p-4">{usuario.nome}</td>
+                    <td className="text-left p-4">{usuario.login}</td>
+                    <td className="text-left p-4">{usuario.permissao}</td>
                     <td className="text-left p-4">
-                        <input type="checkbox" className="mx-auto" checked={fornecedor.ativo} disabled />
+                        <input type="checkbox" className="mx-auto" checked={usuario.ativo} disabled />
                     </td>
-                    {exibirAcoes ? renderizarAcoes(fornecedor) : false}
+                    {exibirAcoes ? renderizarAcoes(usuario) : false}
                 </tr>
             );
         });
     }
 
-    function renderizarAcoes(fornecedor: Fornecedor) {
+    function renderizarAcoes(usuario: Usuario) {
         return (
             <td className="flex justify-center">
-                {props.fornecedorSelecionado ? (
-                    <button onClick={() => props.fornecedorSelecionado?.(fornecedor)} className={`
+                {props.usuarioSelecionado ? (
+                    <button onClick={() => props.usuarioSelecionado?.(usuario)} className={`
                     flex justify-center items-center
                     text-green-600 rounded-full p-2 m-1
                     hover:bg-purple-50
@@ -56,8 +56,8 @@ export default function Tabela(props: TabelaProps) {
                     </button>
                 ) : false}
 
-                {props.fornecedorExcluido ? (
-                    <button onClick={() => props.fornecedorExcluido?.(fornecedor)} className={`
+                {props.usuarioExcluido ? (
+                    <button onClick={() => props.usuarioExcluido?.(usuario)} className={`
                     flex justify-center items-center
                     text-red-500 rounded-full p-2 m-1
                     hover:bg-purple-50

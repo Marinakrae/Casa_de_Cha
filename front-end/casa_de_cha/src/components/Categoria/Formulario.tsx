@@ -1,4 +1,4 @@
-import Categoria from "../../core/Categoria"
+import Categoria from "../../core/model/Categoria"
 import Botao from "../Botao"
 import Entrada from "../Entrada"
 import { useState } from "react"

@@ -1,4 +1,4 @@
-import Produto from "./Produto";
+import Produto from "./model/Produto"
 
 export default interface ProdutoRepositorio {
     salvar(produto: Produto): Promise<Produto>

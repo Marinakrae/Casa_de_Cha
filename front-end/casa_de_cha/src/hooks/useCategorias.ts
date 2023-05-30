@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import Categoria from "../core/Categoria"
+import Categoria from "../core/model/Categoria";
 import firebase from 'firebase/compat/app';
 import ColecaoCategoria from "../backend/db/ColecaoCategoria"
 import CategoriaRepositorio from "../core/CategoriaRepositorio"

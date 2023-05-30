@@ -1,4 +1,4 @@
-import Fornecedor from "./Fornecedor"
+import Fornecedor from "./model/Fornecedor"
 
 export default interface FornecedorRepositorio {
     salvar(fornecedor: Fornecedor): Promise<Fornecedor>

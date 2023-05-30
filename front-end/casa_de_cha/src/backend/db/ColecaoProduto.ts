@@ -1,5 +1,5 @@
 import firebase from "../config";
-import Produto from "../../core/Produto";
+import Produto from "../../core/model/Produto";
 import ProdutoRepositorio from "../../core/ProdutoRepositorio";
 
 export default class ColecaoProduto implements ProdutoRepositorio {

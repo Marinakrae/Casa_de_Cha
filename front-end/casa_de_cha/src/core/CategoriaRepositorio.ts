@@ -1,4 +1,4 @@
-import Categoria from "./Categoria";
+import Categoria from "./model/Categoria"
 
 export default interface CategoriaRepositorio {
     salvar(categoria: Categoria): Promise<Categoria>

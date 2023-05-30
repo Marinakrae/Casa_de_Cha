@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import Fornecedor from "../core/Fornecedor"
+import Fornecedor from "../core/model/Fornecedor";
 import firebase from 'firebase/compat/app';
 import ColecaoFornecedor from "../backend/db/ColecaoFornecedor"
 import FornecedorRepositorio from "../core/FornecedorRepositorio"

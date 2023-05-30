@@ -1,4 +1,4 @@
-import Fornecedor from "../../core/Fornecedor"
+import Fornecedor from "../../core/model/Fornecedor"
 import Botao from "../Botao"
 import Entrada from "../Entrada"
 import { useState } from "react"

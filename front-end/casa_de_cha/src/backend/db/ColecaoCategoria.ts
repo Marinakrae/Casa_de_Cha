@@ -1,5 +1,5 @@
 import firebase from "../config";
-import Categoria from "../../core/Categoria";
+import Categoria from "../../core/model/Categoria";
 import CategoriaRepositorio from "../../core/CategoriaRepositorio";
 
 export default class ColecaoCategoria implements CategoriaRepositorio {
