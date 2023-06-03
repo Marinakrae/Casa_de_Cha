@@ -1,9 +1,9 @@
 import React from "react";
 
 interface EntradaProps {
-    tipo?: 'text' | 'number';
+    tipo?: 'text' | 'number' | 'email' | 'password';
     texto: string;
-    valor: string | number;
+    valor?: string | number;
     somenteLeitura?: boolean;
     className?: string;
     valorMudou?: (valor: any) => void;
@@ -52,14 +52,14 @@ export default function Entrada(props: EntradaProps) {
             {!props.categorias && !props.fornecedores && (
                 <input
                     type={props.tipo ?? 'text'}
-                    value={String(valorFormatado)}
+                    value={valorFormatado !== undefined ? String(valorFormatado) : ''}
                     readOnly={props.somenteLeitura}
                     onChange={e => props.valorMudou?.(e.target.value)}
                     className={`
-            border-2 border-pink-200 rounded-lg
-            focus:outline-none bg-gray-50 px-4 py-2
-            ${props.somenteLeitura ? '' : 'focus:bg-white'} 
-          `}
+                    border-2 border-pink-200 rounded-lg
+                    focus:outline-none bg-gray-50 px-4 py-2
+                    ${props.somenteLeitura ? '' : 'focus:bg-white'} 
+                `}
                 />
             )}
         </div>

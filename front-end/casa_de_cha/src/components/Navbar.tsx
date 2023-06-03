@@ -33,7 +33,7 @@ const Navbar = () => {
                 className={`fixed left-0 top-0 w-full z-10 ease-in duration-300 bg-amber-900`}
             >
                 <div className='max-w-[100] m-auto h-16 flex justify-between items-center p-4 text-white mx-0'>
-                    <Link href='/'>
+                    <Link href='/BoasVindas'>
                         <Image src={logo} alt="Casa de Chá" width={80} height={80} />
                     </Link>
                     <ul
@@ -58,7 +58,7 @@ const Navbar = () => {
                             </ul>
                         </li>
                         <li className='p-4 ml-auto'>
-                            <Link href='/#'>Sair</Link>
+                            <Link href='/Login'>Sair</Link>
                         </li>
                     </ul>
 
