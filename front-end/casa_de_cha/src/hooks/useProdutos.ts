@@ -30,6 +30,12 @@ export default function useProdutos() {
     })
   }
 
+  function obterProdutosCategoria(idCategoria: string) {
+    repo.obterProdutosCategoria(idCategoria).then(produtos => {
+      setProdutos(produtos)
+    })
+  }
+
   function selecionarProduto(produto: Produto) {
     console.log(produto.nome)
     setProduto(produto)
@@ -61,6 +67,7 @@ export default function useProdutos() {
     selecionarProduto,
     obterTodos,
     tabelaVisivel,
-    exibirTabela
+    exibirTabela,
+    obterProdutosCategoria
   }
 }

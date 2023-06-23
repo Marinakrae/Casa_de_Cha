@@ -49,6 +49,12 @@ export default class ColecaoProduto implements ProdutoRepositorio {
         return query.docs.map((doc: { data: () => any; }) => doc.data()) ?? []
     }
 
+    async obterProdutosCategoria(idCategoria: string): Promise<Produto[]> {
+      const query = await this.colecao().where('idCategoria', '==', idCategoria).get();
+      return query.docs.map((doc) => doc.data()) ?? [];
+    }
+    
+
     private colecao() {
         return firebase.firestore().collection('produtos').withConverter(this.conversor)
     }

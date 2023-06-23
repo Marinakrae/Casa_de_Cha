@@ -1,4 +1,4 @@
-import Categoria from "../../core/Categoria"
+import Categoria from "../../core/model/Categoria"
 import { IconeEdicao, IconeLixo } from "../Icones"
 
 interface TabelaProps {

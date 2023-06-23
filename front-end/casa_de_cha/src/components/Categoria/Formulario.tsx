@@ -1,7 +1,9 @@
 import Categoria from "../../core/model/Categoria"
 import Botao from "../Botao"
 import Entrada from "../Entrada"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import TabelaProdutosPertencentes from "./TabelaProdutosPertencentes"
+import useProdutos from "../../hooks/useProdutos"
 
 interface FormularioProps {
     categoria: Categoria
@@ -9,10 +11,18 @@ interface FormularioProps {
     cancelado?: () => void
 }
 
+
 export default function Formulario(props: FormularioProps) {
     const id = props.categoria?.id
     const [nome, setNome] = useState(props.categoria?.nome ?? '')
     const [ativo, setAtivo] = useState(props.categoria?.ativo ?? 0)
+
+    const { obterProdutosCategoria } = useProdutos();
+
+    useEffect(() => {
+        obterProdutosCategoria(id);
+    }, [id]);
+
     return (
         <div>
             <Entrada
@@ -40,6 +50,12 @@ export default function Formulario(props: FormularioProps) {
                     Cancelar
                 </Botao>
             </div>
-        </div>
+
+            {/* Produtos pertencentes
+
+            console.log(obterProdutosCategoria(id)) */}
+            {/* <TabelaProdutosPertencentes produtos={obterProdutosCategoria} /> */}
+
+        </div >
     )
 }

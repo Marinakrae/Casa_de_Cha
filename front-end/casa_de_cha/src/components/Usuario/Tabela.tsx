@@ -23,9 +23,29 @@ export default function Tabela(props: TabelaProps) {
         )
     }
 
+    function obterNomePermissao(idPermissao: string) {
+        const usuarios = props.usuarios || [];
+
+        console.log(idPermissao)
+
+        const permissaoEncontrada = usuarios.find(
+            (usuario) => usuario.permissao === idPermissao
+        );
+
+        if (permissaoEncontrada?.permissao === '1') {
+            return 'Administrador';
+        } else if (permissaoEncontrada?.permissao === '2') {
+            return 'Usuário';
+        } else {
+            return '';
+        }
+
+    }
+
     function renderizarDados() {
         return props.usuarios?.map((usuario, i) => {
-            console.log(usuario)
+            const nomePermissao = obterNomePermissao(usuario.permissao);
+
             return (
                 <tr
                     key={usuario.id}
@@ -33,7 +53,7 @@ export default function Tabela(props: TabelaProps) {
                 >
                     <td className="text-left p-4">{usuario.nome}</td>
                     <td className="text-left p-4">{usuario.login}</td>
-                    <td className="text-left p-4">{usuario.permissao}</td>
+                    <td className="text-left p-4">{nomePermissao}</td>
                     <td className="text-left p-4">
                         <input type="checkbox" className="mx-auto" checked={usuario.ativo} disabled />
                     </td>

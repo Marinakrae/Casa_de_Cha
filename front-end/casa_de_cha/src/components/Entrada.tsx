@@ -11,6 +11,7 @@ interface EntradaProps {
     mascaraMonetaria?: boolean;
     categorias?: Array<{ id: string | number; nome: string; ativo: boolean }>; // lista de categorias
     fornecedores?: Array<{ id: string | number; razao_social: string; cnpj: number, telefone: number, ativo: boolean }>; // lista de fornecedores
+    permissoes?: Array<{ id: string | number; nome: string }>;
 }
 
 export default function Entrada(props: EntradaProps) {
@@ -35,6 +36,20 @@ export default function Entrada(props: EntradaProps) {
                     ))}
                 </select>
             )}
+            {props.permissoes && (
+                <select
+                    value={String(valorFormatado)}
+                    onChange={e => props.valorMudou?.(e.target.value)}
+                    className="border-2 border-pink-200 rounded-lg focus:outline-none bg-gray-50 px-4 py-2.5"
+                >
+                    <option value="">Selecione uma permissão</option>
+                    {props.permissoes.map(permissao => (
+                        <option key={permissao.id} value={String(permissao.id)}>
+                            {permissao.nome}
+                        </option>
+                    ))}
+                </select>
+            )}
             {props.fornecedores && (
                 <select
                     value={String(valorFormatado)}
@@ -49,22 +64,23 @@ export default function Entrada(props: EntradaProps) {
                     ))}
                 </select>
             )}
-            {!props.categorias && !props.fornecedores && (
+            {!props.categorias && !props.fornecedores && !props.permissoes && (
                 <input
                     type={props.tipo ?? 'text'}
                     value={valorFormatado !== undefined ? String(valorFormatado) : ''}
                     readOnly={props.somenteLeitura}
                     onChange={e => props.valorMudou?.(e.target.value)}
                     className={`
-                    border-2 border-pink-200 rounded-lg
-                    focus:outline-none bg-gray-50 px-4 py-2
-                    ${props.somenteLeitura ? '' : 'focus:bg-white'} 
-                `}
+              border-2 border-pink-200 rounded-lg
+              focus:outline-none bg-gray-50 px-4 py-2
+              ${props.somenteLeitura ? '' : 'focus:bg-white'}
+            `}
                 />
             )}
         </div>
     );
 }
+
 
 export const moneyMask = (value: string) => {
     value = value.replace('.', '').replace(',', '').replace(/\D/g, '')

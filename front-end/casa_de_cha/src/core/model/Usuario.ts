@@ -1,3 +1,6 @@
+import useUsuarios from "../../hooks/useUsuario"
+import reposi from "../UsuarioRepositorio"
+
 export default class Usuario {
     private _id: string
     private _nome: string
@@ -18,6 +21,11 @@ export default class Usuario {
     static vazio() {
         return new Usuario('', '', '', '', '', true)
     }
+
+    async getNomeByLogin(login: string, usuarios: Usuario[]): Promise<string> {
+        const usuario = usuarios.find((u) => u.login === login);
+        return usuario ? usuario.nome : '';
+      }      
 
     get id() {
         return this._id
