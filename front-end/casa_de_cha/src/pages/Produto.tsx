@@ -1,4 +1,3 @@
-import { Inter } from 'next/font/google'
 import Layout from '../components/Layout'
 import Tabela from '../components/Produto/Tabela'
 import Botao from '../components/Botao'
@@ -8,8 +7,6 @@ import useProdutos from '../hooks/useProdutos'
 import Navbar from '../components/Navbar'
 import useCategorias from '../hooks/useCategorias'
 import useFornecedores from '../hooks/useFornecedores'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 

@@ -66,15 +66,15 @@ export default function Entrada(props: EntradaProps) {
             )}
             {!props.categorias && !props.fornecedores && !props.permissoes && (
                 <input
-                    type={props.tipo ?? 'text'}
+                    type={props.tipo === 'number' ? 'text' : props.tipo ?? 'text'}
                     value={valorFormatado !== undefined ? String(valorFormatado) : ''}
                     readOnly={props.somenteLeitura}
                     onChange={e => props.valorMudou?.(e.target.value)}
                     className={`
-              border-2 border-pink-200 rounded-lg
-              focus:outline-none bg-gray-50 px-4 py-2
-              ${props.somenteLeitura ? '' : 'focus:bg-white'}
-            `}
+                  border-2 border-pink-200 rounded-lg
+                  focus:outline-none bg-gray-50 px-4 py-2
+                  ${props.somenteLeitura ? '' : 'focus:bg-white'}
+                `}
                 />
             )}
         </div>
@@ -83,12 +83,11 @@ export default function Entrada(props: EntradaProps) {
 
 
 export const moneyMask = (value: string) => {
-    value = value.replace('.', '').replace(',', '').replace(/\D/g, '')
+    value = value.replace(',', '').replace(/\D/g, '');
+    const floatValue = parseFloat(value);
+    if (isNaN(floatValue)) return '';
 
-    const options = { minimumFractionDigits: 2 }
-    const result = new Intl.NumberFormat('pt-BR', options).format(
-        parseFloat(value) / 100
-    )
-
+    const options = { minimumFractionDigits: 2 };
+    const result = new Intl.NumberFormat('pt-BR', options).format(floatValue);
     return 'R$ ' + result;
-}
+};

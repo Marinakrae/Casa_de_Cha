@@ -19,8 +19,8 @@ interface LoginProps {
 }
 
 export default function Login(props: LoginProps) {
-    const [login, setLogin] = useState(props.usuario?.login ?? 0)
-    const [senha, setSenha] = useState(props.usuario?.senha ?? 0)
+    const [login, setLogin] = useState(props.usuario?.login ?? '')
+    const [senha, setSenha] = useState(props.usuario?.senha ?? '')
     const router = useRouter()
 
     const handleEntrar = () => {

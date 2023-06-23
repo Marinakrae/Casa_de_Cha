@@ -10,8 +10,16 @@ interface FormularioProps {
     produto: Produto
     produtoMudou?: (cliente: Produto) => void
     cancelado?: () => void
-    categorias?: Categoria[]
-    fornecedores?: Fornecedor[]
+    categorias: Categoria[]
+    fornecedores: Fornecedor[]
+}
+
+function filtrarCategoriasAtivas(categorias: Categoria[]) {
+    return categorias.filter(categoria => categoria.ativo);
+}
+
+function filtrarFornecedoresAtivos(fornecedores: Fornecedor[]) {
+    return fornecedores.filter(fornecedor => fornecedor.ativo);
 }
 
 export default function Formulario(props: FormularioProps) {
@@ -24,8 +32,8 @@ export default function Formulario(props: FormularioProps) {
     const [ativo, setAtivo] = useState(props.produto?.ativo ?? 0)
     const [id_categoria, setIdCategoria] = useState(props.produto?.id_categoria ?? 0)
     const [id_fornecedor, setIdFornecedor] = useState(props.produto?.id_fornecedor ?? 0)
-    const categorias = props.categorias
-    const fornecedores = props.fornecedores
+    const categorias = filtrarCategoriasAtivas(props.categorias)
+    const fornecedores = filtrarFornecedoresAtivos(props.fornecedores)
 
     return (
         <div>
