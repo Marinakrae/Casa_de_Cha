@@ -54,6 +54,16 @@ export default class ColecaoProduto implements ProdutoRepositorio {
       return query.docs.map((doc) => doc.data()) ?? [];
     }
     
+    async obterById(idProduto: string): Promise<Produto> {
+      const docRef = await this.colecao().doc(idProduto).get();
+      const produto = docRef.data() as Produto | undefined;
+      console.log(produto)
+      if (produto) {
+        return produto;
+      } else {
+        throw new Error('Produto não encontrado');
+      }
+    }    
 
     private colecao() {
         return firebase.firestore().collection('produtos').withConverter(this.conversor)

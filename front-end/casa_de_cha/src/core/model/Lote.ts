@@ -1,20 +1,24 @@
-export default class Usuario {
+import { format } from 'date-fns';
+
+export default class Lote {
     private _id: string
     private _qtd_lote: number
     private _dt_validade: string
-    private _dt_registro: Date
-    private _ativo: boolean
+    private _dt_registro: string
+    private _id_produto: string
 
-    constructor(id: string, qtd_lote: number, dt_validade: string, dt_registro: Date, ativo: boolean){
+    constructor(id: string, qtd_lote: number, dt_validade: string, dt_registro: string, id_produto: string){
         this._qtd_lote = qtd_lote
         this._dt_registro = dt_registro
         this._dt_validade = dt_validade
-        this._ativo = ativo
         this._id = id
+        this._id_produto = id_produto
     }
 
     static vazio() {
-        return new Usuario('', 0, '', now(), true) //colocar aqui a currentdate
+        const currentDate = new Date();
+
+        return new Lote('', 0, '', format(currentDate, 'dd/MM/yyyy'), '');
     }
 
     get id() {
@@ -33,7 +37,7 @@ export default class Usuario {
         return this._dt_registro
     }
 
-    get ativo() {
-        return this._ativo
+    get id_produto() {
+        return this._id_produto
     }
 }

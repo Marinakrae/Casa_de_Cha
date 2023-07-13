@@ -1,4 +1,4 @@
-import Produto from "../../core/model/Produto"
+import Venda from "../../core/model/Venda"
 import Categoria from "../../core/model/Categoria"
 import Botao from "../Botao"
 import Entrada from "../Entrada"
@@ -7,8 +7,8 @@ import { IMaskInput } from "react-imask";
 import Fornecedor from "../../core/model/Fornecedor"
 
 interface FormularioProps {
-    produto: Produto
-    produtoMudou?: (cliente: Produto) => void
+    venda: Venda
+    vendaMudou?: (cliente: Venda) => void
     cancelado?: () => void
     categorias: Categoria[]
     fornecedores: Fornecedor[]
@@ -23,15 +23,15 @@ function filtrarFornecedoresAtivos(fornecedores: Fornecedor[]) {
 }
 
 export default function Formulario(props: FormularioProps) {
-    const id = props.produto?.id
-    const [nome, setNome] = useState(props.produto?.nome ?? '')
-    const [descricao, setDescricao] = useState(props.produto?.descricao ?? '')
-    const [custo, setCusto] = useState(props.produto?.custo ?? 0)
-    const [qtd_produto, setQtdProduto] = useState(props.produto?.qtd_produto ?? 0)
-    const [valor_venda, setValorVenda] = useState(props.produto?.valor_venda ?? 0)
-    const [ativo, setAtivo] = useState(props.produto?.ativo ?? 0)
-    const [id_categoria, setIdCategoria] = useState(props.produto?.id_categoria ?? 0)
-    const [id_fornecedor, setIdFornecedor] = useState(props.produto?.id_fornecedor ?? 0)
+    const id = props.venda?.id
+    const [nome, setNome] = useState(props.venda?.nome ?? '')
+    const [descricao, setDescricao] = useState(props.venda?.descricao ?? '')
+    const [custo, setCusto] = useState(props.venda?.custo ?? 0)
+    const [qtd_venda, setQtdVenda] = useState(props.venda?.qtd_venda ?? 0)
+    const [valor_venda, setValorVenda] = useState(props.venda?.valor_venda ?? 0)
+    const [ativo, setAtivo] = useState(props.venda?.ativo ?? 0)
+    const [id_categoria, setIdCategoria] = useState(props.venda?.id_categoria ?? 0)
+    const [id_fornecedor, setIdFornecedor] = useState(props.venda?.id_fornecedor ?? 0)
     const categorias = filtrarCategoriasAtivas(props.categorias)
     const fornecedores = filtrarFornecedoresAtivos(props.fornecedores)
 
@@ -71,7 +71,7 @@ export default function Formulario(props: FormularioProps) {
                 mask={Number}
                 radix="."
                 thousandsSeparator=","
-                placeholder="Digite o custo de aquisição do produto"
+                placeholder="Digite o custo de aquisição do venda"
                 value={custo}
             /> */}
             <div className="flex flex-wrap">
@@ -96,11 +96,10 @@ export default function Formulario(props: FormularioProps) {
                 <Entrada
                     tipo="number"
                     texto="Quantidade Disponível"
-                    valor={qtd_produto}
-                    valorMudou={setQtdProduto}
+                    valor={qtd_venda}
+                    valorMudou={setQtdVenda}
                     className="mb-5 pr-5"
                     metadeLargura
-                    somenteLeitura
                 />
                 <div className="flex items-center">
                     <input
@@ -114,7 +113,7 @@ export default function Formulario(props: FormularioProps) {
             </div>
             <div className="flex justify-end mt-4">
                 <Botao cor='blue' className="mr-2"
-                    onClick={() => props.produtoMudou?.(new Produto(id, nome, descricao, custo, qtd_produto, valor_venda, ativo, id_categoria, id_fornecedor))}
+                    onClick={() => props.vendaMudou?.(new Venda(id, nome, descricao, custo, qtd_venda, valor_venda, ativo, id_categoria, id_fornecedor))}
                 >
                     {id ? 'Alterar' : 'Salvar'}
                 </Botao>

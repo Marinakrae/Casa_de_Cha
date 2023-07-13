@@ -61,4 +61,8 @@ export default class Produto {
     get id_fornecedor() {
         return this._id_fornecedor
     }
+
+    atualizarQuantidade(novaQuantidade: number) {
+        this._qtd_produto = novaQuantidade;
+    }
 }

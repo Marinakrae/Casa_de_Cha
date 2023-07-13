@@ -46,33 +46,22 @@ const Navbar = () => {
                         className="hidden sm:flex flex-grow ml-20"
                     >
                         <li className="p-4 text-lg">
-                            <Link href="/#">Registrar Venda</Link>
+                            <Link href="/Venda">Vendas</Link>
                         </li>
                         <li className="p-4 text-lg">
-                            <Link href="/Lote">Registrar Lote</Link>
+                            <Link href="/Lote">Lotes</Link>
                         </li>
-                        <li className="p-4 relative text-lg group">
-                            <span className="cursor-pointer">Cadastros</span>
-                            <ul className="absolute left-0 mt-2 py-2 bg-amber-900 text-white rounded-md space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <li>
-                                    <Link href="/Categoria">Categorias</Link>
-                                </li>
-                                <li>
-                                    <Link href="/Fornecedor">Fornecedores</Link>
-                                </li>
-                                <li>
-                                    <Link href="/Produto">Produtos</Link>
-                                </li>
-                                <li>
-                                    <Link href="/Usuario">Usuários</Link>
-                                </li>
-                                <li>
-                                    <Link href="/Lote">Lotes</Link>
-                                </li>
-                                <li>
-                                    <Link href="/Venda">Vendas</Link>
-                                </li>
-                            </ul>
+                        <li className="p-4 text-lg">
+                            <Link href="/Produto">Produtos</Link>
+                        </li>
+                        <li className="p-4 text-lg">
+                            <Link href="/Categoria">Categorias</Link>
+                        </li>
+                        <li className="p-4 text-lg">
+                            <Link href="/Fornecedor">Fornecedores</Link>
+                        </li>
+                        <li className="p-4 text-lg">
+                            <Link href="/Usuario">Usuários</Link>
                         </li>
                         <li className="p-4 ml-auto text-lg">
                             <Link href="/Login">Sair</Link>
@@ -106,30 +95,37 @@ const Navbar = () => {
                                 onClick={handleNav}
                                 className="p-4 text-4xl text-amber-900 hover:text-pink-500"
                             >
-                                <Link href="/#">Registrar Venda</Link>
+                                <Link href="/Venda">Vendas</Link>
                             </li>
                             <li
                                 onClick={handleNav}
                                 className="p-4 text-4xl text-amber-900 hover:text-pink-500"
                             >
-                                <Link href="/#">Registrar Lote</Link>
+                                <Link href="/Lote">Lotes</Link>
                             </li>
                             <li
                                 onClick={handleNav}
-                                className="p-4 relative text-4xl text-amber-900 hover:text-pink-500 group"
+                                className="p-4 text-4xl text-amber-900 hover:text-pink-500"
                             >
-                                <span className="cursor-pointer">Cadastros</span>
-                                <ul className="bg-pink-200 text-amber-900 rounded-md p-2 space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <li>
-                                        <Link href="/categorias" className='hover:text-pink-500'>Categoria</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/fornecedores" className='hover:text-pink-500'>Fornecedor</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/produtos" className='hover:text-pink-500'>Produto</Link>
-                                    </li>
-                                </ul>
+                                <Link href="/Produto">Produtos</Link>
+                            </li>
+                            <li
+                                onClick={handleNav}
+                                className="p-4 text-4xl text-amber-900 hover:text-pink-500"
+                            >
+                                <Link href="/Categoria">Categorias</Link>
+                            </li>
+                            <li
+                                onClick={handleNav}
+                                className="p-4 text-4xl text-amber-900 hover:text-pink-500"
+                            >
+                                <Link href="/Fornecedor">Fornecedores</Link>
+                            </li>
+                            <li
+                                onClick={handleNav}
+                                className="p-4 text-4xl text-amber-900 hover:text-pink-500"
+                            >
+                                <Link href="/Usuario">Usuários</Link>
                             </li>
                             <li
                                 onClick={handleNav}

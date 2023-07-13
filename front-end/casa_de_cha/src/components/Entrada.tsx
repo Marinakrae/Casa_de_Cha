@@ -11,6 +11,17 @@ interface EntradaProps {
     mascaraMonetaria?: boolean;
     categorias?: Array<{ id: string | number; nome: string; ativo: boolean }>; // lista de categorias
     fornecedores?: Array<{ id: string | number; razao_social: string; cnpj: number, telefone: number, ativo: boolean }>; // lista de fornecedores
+    produtos?: Array<{
+        id: string | number;
+        nome: string;
+        descricao: string;
+        custo: number;
+        qtd_produto: number;
+        valor_venda: number;
+        ativo: boolean;
+        id_categoria: string;
+        id_fornecedor: string;
+    }>; // lista de produtos
     permissoes?: Array<{ id: string | number; nome: string }>;
 }
 
@@ -64,7 +75,21 @@ export default function Entrada(props: EntradaProps) {
                     ))}
                 </select>
             )}
-            {!props.categorias && !props.fornecedores && !props.permissoes && (
+            {props.produtos && (
+                <select
+                    value={String(valorFormatado)}
+                    onChange={e => props.valorMudou?.(e.target.value)}
+                    className="border-2 border-pink-200 rounded-lg focus:outline-none bg-gray-50 px-4 py-2"
+                >
+                    <option value="">Selecione um produto</option>
+                    {props.produtos.map(produto => (
+                        <option key={produto.id} value={String(produto.id)}>
+                            {produto.nome}
+                        </option>
+                    ))}
+                </select>
+            )}
+            {!props.categorias && !props.fornecedores && !props.permissoes && !props.produtos && (
                 <input
                     type={props.tipo === 'number' ? 'text' : props.tipo ?? 'text'}
                     value={valorFormatado !== undefined ? String(valorFormatado) : ''}
