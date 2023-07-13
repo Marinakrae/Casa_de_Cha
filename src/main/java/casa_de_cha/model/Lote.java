@@ -11,7 +11,6 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "lote")
 @SequenceGenerator(name = "seq_lote", sequenceName = "seq_lote", allocationSize = 1)
 public class Lote implements Serializable {
 
@@ -26,9 +25,8 @@ public class Lote implements Serializable {
     private Date dt_registro;
     @Column
     private int qtd_lote;
-    @ManyToOne(cascade=CascadeType.PERSIST)
-    @JoinColumn(name = "produto_id_produto")
-    private Produto produto;
+
+    private int id_produto;
 
     public int getId_Lote() {
         return id_Lote;
@@ -62,12 +60,12 @@ public class Lote implements Serializable {
         this.qtd_lote = qtd_lote;
     }
 
-    public Produto getProduto() {
-        return produto;
+    public int getProduto() {
+        return id_produto;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setProduto(int id_produto) {
+        this.id_produto = id_produto;
     }
 
 }
