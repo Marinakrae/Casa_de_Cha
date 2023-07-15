@@ -29,8 +29,19 @@ export default class ColecaoLote implements LoteRepositorio {
 
     async salvar(lote: Lote): Promise<Lote> {
         if (lote?.id) {
-          //Edição
+          // Edição
+          const produto = await this.produtoRepositorio.obterById(lote.id_produto);
+          console.log(produto);
+          if (produto) {
+            const loteOriginal = await this.colecao().doc(lote.id).get();
+            const loteAntigo = loteOriginal.data() as Lote;
+            const diferencaQuantidade = loteAntigo.qtd_lote - lote.qtd_lote;
+
+            produto.atualizarQuantidade(produto.qtd_produto - diferencaQuantidade);
+            await this.produtoRepositorio.salvar(produto);
+          }
           await this.colecao().doc(lote.id).set(lote);
+          
           return lote;
         } else {
           const docRef = await this.colecao().add(lote);
@@ -39,8 +50,9 @@ export default class ColecaoLote implements LoteRepositorio {
           if (loteExistente) {
             console.log(loteExistente)
             const produto = await this.produtoRepositorio.obterById(loteExistente.id_produto);
+            console.log(produto)
             if (produto) {
-              produto.atualizarQuantidade(produto.qtd_produto + loteExistente.qtd_lote);
+              produto.atualizarQuantidade(+produto.qtd_produto + +loteExistente.qtd_lote);
               await this.produtoRepositorio.salvar(produto);
             }
             return loteExistente;

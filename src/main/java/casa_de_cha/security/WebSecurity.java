@@ -54,7 +54,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/cha/categoria/salvar").hasAnyAuthority("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/cha/categoria/apagar/{id}").hasAnyAuthority("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/cha/categoria/editar/{id}").hasAnyAuthority("ADMIN")
-                .antMatchers(HttpMethod.GET, "/cha/lote/listar").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/cha/lote/listar").permitAll()
                 .antMatchers(HttpMethod.GET, "/cha/lote/{id}").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.POST, "/cha/lote/salvar").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers(HttpMethod.PUT, "/cha/lote/apagar/{id}").hasAnyAuthority("USER", "ADMIN")

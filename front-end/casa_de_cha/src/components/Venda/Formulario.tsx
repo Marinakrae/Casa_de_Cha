@@ -1,119 +1,124 @@
 import Venda from "../../core/model/Venda"
-import Categoria from "../../core/model/Categoria"
 import Botao from "../Botao"
 import Entrada from "../Entrada"
 import { useState } from "react"
-import { IMaskInput } from "react-imask";
-import Fornecedor from "../../core/model/Fornecedor"
+import Produto from "../../core/model/Produto"
+import Usuario from "../../core/model/Usuario"
+import Tabela from "./Tabela"
+import ItensVenda from "../../core/model/ItensVenda"
+import TabelaItensVenda from "./TabelaItensVenda"
 
 interface FormularioProps {
     venda: Venda
     vendaMudou?: (cliente: Venda) => void
     cancelado?: () => void
-    categorias: Categoria[]
-    fornecedores: Fornecedor[]
+    produtos: Produto[]
+    usuarios: Usuario[]
+    itensVenda: ItensVenda[];
+    qtdProduto?: number;
 }
 
-function filtrarCategoriasAtivas(categorias: Categoria[]) {
-    return categorias.filter(categoria => categoria.ativo);
+function filtrarProdutosAtivos(produtos: Produto[]) {
+    return produtos.filter(produto => produto.ativo);
 }
 
-function filtrarFornecedoresAtivos(fornecedores: Fornecedor[]) {
-    return fornecedores.filter(fornecedor => fornecedor.ativo);
+function filtrarVendedoresAtivos(usuarios: Usuario[]) {
+    return usuarios.filter(usuario => usuario.ativo);
 }
 
 export default function Formulario(props: FormularioProps) {
     const id = props.venda?.id
-    const [nome, setNome] = useState(props.venda?.nome ?? '')
-    const [descricao, setDescricao] = useState(props.venda?.descricao ?? '')
-    const [custo, setCusto] = useState(props.venda?.custo ?? 0)
-    const [qtd_venda, setQtdVenda] = useState(props.venda?.qtd_venda ?? 0)
-    const [valor_venda, setValorVenda] = useState(props.venda?.valor_venda ?? 0)
-    const [ativo, setAtivo] = useState(props.venda?.ativo ?? 0)
-    const [id_categoria, setIdCategoria] = useState(props.venda?.id_categoria ?? 0)
-    const [id_fornecedor, setIdFornecedor] = useState(props.venda?.id_fornecedor ?? 0)
-    const categorias = filtrarCategoriasAtivas(props.categorias)
-    const fornecedores = filtrarFornecedoresAtivos(props.fornecedores)
+    const [qtdProduto, setqtdProduto] = useState(props.qtdProduto ?? 0)
+    const [vendedor, setVendedor] = useState(props.venda?.vendedor ?? '')
+    const [valor_total, setValorTotal] = useState(props.venda?.valor_total ?? 0)
+    const [data_venda, setDataVenda] = useState(props.venda?.dt_venda ?? '')
+    const [id_itens_venda, setIdItensVenda] = useState(props.venda?.id_itens_venda ?? 0)
+    const produtos = filtrarProdutosAtivos(props.produtos)
+    const vendedores = filtrarVendedoresAtivos(props.usuarios)
+    const [itens_venda, setItensVenda] = useState([] as ItensVenda[]);
+
+    const [produtoSelecionado, setProdutoSelecionado] = useState(''); // Estado para armazenar o produto selecionado
+    const [quantidade, setQuantidade] = useState(0); // Estado para armazenar a quantidade
+
+    function adicionarItemVenda() {
+        const produto = produtos.find((p) => p.id === produtoSelecionado);
+
+        if (produto) {
+            // const itemVenda: ItensVenda = {
+            //     _id: "",
+            //     _qtd_vendida: quantidade,
+            //     _id_produto: produto.id,
+            //     _id_venda: id.toString,
+            // };
+
+            setItensVenda((prevItensVenda) => [
+                ...prevItensVenda,
+                ItensVenda.vazio(),
+            ]);
+
+            // Limpar os campos de entrada após adicionar o item de venda
+            setProdutoSelecionado('');
+            setQuantidade(0);
+        }
+    }
 
     return (
         <div>
             <Entrada
-                texto="Nome"
-                valor={nome}
-                valorMudou={setNome}
-                className="mb-5"
-            />
-            <Entrada
-                texto="Descrição"
-                valor={descricao}
-                valorMudou={setDescricao}
-                className="mb-5"
+                texto="Vendedor"
+                valor={vendedor}
+                valorMudou={setVendedor}
+                className="mb-5 pr-5"
+                vendedores={vendedores}
             />
             <div className="flex flex-wrap">
                 <Entrada
-                    texto="Fornecedor"
-                    valor={id_fornecedor}
-                    valorMudou={setIdFornecedor}
-                    className="mb-5 pr-5"
-                    metadeLargura
-                    fornecedores={fornecedores}
-                />
-                <Entrada
-                    texto="Categoria"
-                    valor={id_categoria}
-                    valorMudou={setIdCategoria}
+                    texto="Valor Total"
+                    valor={valor_total}
+                    valorMudou={setValorTotal}
                     className="mb-5"
                     metadeLargura
-                    categorias={categorias}
-                />
-            </div>
-            {/* <IMaskInput
-                mask={Number}
-                radix="."
-                thousandsSeparator=","
-                placeholder="Digite o custo de aquisição do venda"
-                value={custo}
-            /> */}
-            <div className="flex flex-wrap">
-                <Entrada
-                    tipo="number"
-                    texto="Custo"
-                    valor={custo}
-                    valorMudou={setCusto}
-                    className="mb-5 pr-5"
-                    metadeLargura
                 />
                 <Entrada
-                    tipo="number"
-                    texto="Valor Venda"
-                    valor={valor_venda}
-                    valorMudou={setValorVenda}
+                    texto="Data de Registro"
+                    valor={data_venda}
+                    valorMudou={setDataVenda}
                     className="mb-5"
                     metadeLargura
                 />
             </div>
+            Itens Venda:
             <div className="flex flex-wrap">
                 <Entrada
+                    texto="Produto"
+                    valor={produtoSelecionado}
+                    valorMudou={setProdutoSelecionado}
+                    className="mb-5 pr-5"
+                    produtos={produtos}
+                    metadeLargura
+                />
+                <Entrada
+                    texto="Quantidade"
+                    valor={qtdProduto}
+                    valorMudou={setqtdProduto}
                     tipo="number"
-                    texto="Quantidade Disponível"
-                    valor={qtd_venda}
-                    valorMudou={setQtdVenda}
                     className="mb-5 pr-5"
                     metadeLargura
                 />
-                <div className="flex items-center">
-                    <input
-                        type="checkbox"
-                        checked={ativo}
-                        onChange={(e) => setAtivo(e.target.checked)}
-                        className="mr-2 w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label>Ativo</label>
-                </div>
+                <Botao cor="green" className="mr-2" onClick={adicionarItemVenda}>
+                    Adicionar
+                </Botao>
+            </div>
+            <br></br>
+            <div className="flex flex-wrap">
+                <TabelaItensVenda
+                    itensVenda={props.itensVenda}
+                    produtos={props.produtos}
+                />
             </div>
             <div className="flex justify-end mt-4">
                 <Botao cor='blue' className="mr-2"
-                    onClick={() => props.vendaMudou?.(new Venda(id, nome, descricao, custo, qtd_venda, valor_venda, ativo, id_categoria, id_fornecedor))}
+                    onClick={() => props.vendaMudou?.(new Venda(id, valor_total, data_venda, id_itens_venda, vendedor))}
                 >
                     {id ? 'Alterar' : 'Salvar'}
                 </Botao>

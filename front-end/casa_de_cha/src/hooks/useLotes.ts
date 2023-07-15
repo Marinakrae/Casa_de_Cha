@@ -4,9 +4,12 @@ import firebase from 'firebase/compat/app';
 import ColecaoLote from "../backend/db/ColecaoLote"
 import LoteRepositorio from "../core/LoteRepositorio"
 import useTabelaOuForm from "./useTabelaOuForm"
+import Produto from "../core/model/Produto";
+import ColecaoProduto from "../backend/db/ColecaoProduto";
 
 export default function useLotes() {
-  const repo: LoteRepositorio = new ColecaoLote()
+  const produtoRepositorio = new ColecaoProduto;
+  const repo: LoteRepositorio = new ColecaoLote(produtoRepositorio)
 
   const {tabelaVisivel, exibirTabela, exibirFormulario} = useTabelaOuForm()
 

@@ -8,14 +8,13 @@ export default class ColecaoVenda implements VendaRepositorio {
         toFirestore(venda: Venda) {
             return {
                 valor_total: venda.valor_total,
-                dt_registro: venda.dt_registro,
                 dt_venda: venda.dt_venda,
-                ativo: venda.ativo
+                id_itens_venda: venda.id_itens_venda
             }    
         },
         fromFirestore(snapshot: firebase.firestore.QueryDocumentSnapshot, options: firebase.firestore.SnapshotOptions): Venda {
             const dados = snapshot?.data(options)
-            return new Venda(snapshot.id, dados.valor_total, dados.dt_registro, dados.dt_venda, dados._ativo)
+            return new Venda(snapshot.id, dados.valor_total, dados.dt_venda, dados.id_itens_venda)
         }
     }
 

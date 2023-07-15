@@ -37,15 +37,9 @@ export default function useVendas() {
 //   }
 
   function selecionarVenda(venda: Venda) {
-    console.log(venda.nome)
+    console.log(venda.id)
     setVenda(venda)
     exibirFormulario()
-  }
-
-  async function excluirVenda(venda: Venda) {
-    console.log(`Excluir: ${venda.nome}`)
-    await repo.excluir(venda)
-    obterTodos()
   }
 
   async function salvarVenda(venda: Venda) {
@@ -63,7 +57,6 @@ export default function useVendas() {
     vendas,
     salvarVenda,
     novoVenda,
-    excluirVenda,
     selecionarVenda,
     obterTodos,
     tabelaVisivel,

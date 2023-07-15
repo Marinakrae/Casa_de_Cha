@@ -4,21 +4,17 @@ import Venda from "../../core/model/Venda"
 import { IconeEdicao, IconeLixo } from "../Icones"
 
 interface TabelaProps {
-    vendas: Venda[]
-    vendaSelecionado?: (venda: Venda) => void
-    vendaExcluido?: (venda: Venda) => void
     produtos?: Produto[]
     itensVenda: ItensVenda[];
 }
 
-export default function Tabela(props: TabelaProps) {
+export default function TabelaItensVenda(props: TabelaProps) {
 
     function renderizarCabecalho() {
         return (
             <tr>
-                <th className="text-left p-4">Valor Total</th>
-                <th className="text-left p-4">Data Venda</th>
-                <th className="text-left p-4">Vendedor</th>
+                <th className="text-left p-4">Produtos</th>
+                <th className="text-left p-4">Quantidade</th>
             </tr>
         )
     }
@@ -34,15 +30,14 @@ export default function Tabela(props: TabelaProps) {
 
     function renderizarDados() {
 
-        return props.vendas?.map((venda, i) => {
+        return props.itensVenda?.map((item, i) => {
             return (
                 <tr
-                    key={venda.id}
+                    key={item.id}
                     className={`${i % 2 === 0 ? 'bg-pink-200' : 'bg-pink-100'}`}
                 >
-                    <td className="text-left p-4">{venda.valor_total}</td>
-                    <td className="text-left p-4">{venda.dt_venda}</td>
-                    <td className="text-left p-4">{venda.vendedor}</td>
+                    <td className="text-left p-4">{obterNomeProduto(item.id_produto)}</td>
+                    <td className="text-left p-4">{item.qtd_vendida}</td>
                 </tr>
             );
         });

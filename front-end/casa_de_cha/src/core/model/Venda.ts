@@ -1,23 +1,24 @@
+import { format } from "date-fns"
+
 export default class Venda {
     private _id: string
     private _valor_total: number
     private _dt_venda: string
-    private _dt_registro: Date
-    private _ativo: boolean
+    private _id_itens_venda: string
+    private _vendedor : string
 
-    constructor(id: string, valor_total: number, dt_venda: string, dt_registro: Date, ativo: boolean){
+    constructor(id: string, valor_total: number, dt_venda: string, id_itens_venda: string, vendedor: string){
         this._valor_total = valor_total
-        this._dt_registro = dt_registro
         this._dt_venda = dt_venda
-        this._ativo = ativo
         this._id = id
+        this._id_itens_venda = id_itens_venda
+        this._vendedor = vendedor
     }
 
     static vazio() {
         const currentDate = new Date();
-        //const formattedDate = format(currentDate, 'yyyy-MM-dd'); 
-        
-        return new Venda('', 0, '', currentDate, true);
+
+        return new Venda('', 0, format(currentDate, 'dd/MM/yyyy'), '', '');
     }
 
     get id() {
@@ -32,11 +33,11 @@ export default class Venda {
         return this._dt_venda
     }
 
-    get dt_registro() {
-        return this._dt_registro
+    get id_itens_venda() {
+        return this._id_itens_venda;
     }
 
-    get ativo() {
-        return this._ativo
+    get vendedor(){
+        return this._vendedor
     }
 }
